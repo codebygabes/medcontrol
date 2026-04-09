@@ -2,7 +2,7 @@
 
 > Controle de medicamentos para idosos via linha de comando (CLI).
 
-![CI](https://github.com/SEU_USUARIO/medcontrol/actions/workflows/ci.yml/badge.svg)
+![CI](https://github.com/codebygabes/medcontrol/actions/workflows/ci.yml/badge.svg)
 ![Versão](https://img.shields.io/badge/versão-1.0.0-blue)
 ![Python](https://img.shields.io/badge/python-3.10+-green)
 
@@ -137,9 +137,9 @@ Segue o padrão [Semantic Versioning](https://semver.org/lang/pt-BR/):
 
 ## 👤 Autor
 
-**Seu Nome**  
+**João Gabriel dos Santos Felipe*  
 Disciplina: Bootcamp  
-Repositório: https://github.com/SEU_USUARIO/medcontrol
+Repositório: https://github.com/codebygabes/medcontrol
 
 ## 📄 Licença
 
