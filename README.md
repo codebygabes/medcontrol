@@ -111,7 +111,7 @@ Saída esperada:
 
 ```
 tests/test_app.py ...............                             [100%]
-15 passed in 0.12s
+14 passed in 0.12s
 ```
 
 ## 🔍 Executar o Lint
