@@ -137,7 +137,7 @@ Segue o padrão [Semantic Versioning](https://semver.org/lang/pt-BR/):
 
 ## 👤 Autor
 
-**João Gabriel dos Santos Felipe*  
+**João Gabriel dos Santos Felipe**  
 Disciplina: Bootcamp  
 Repositório: https://github.com/codebygabes/medcontrol
 
