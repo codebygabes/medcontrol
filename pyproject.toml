@@ -8,7 +8,7 @@ version = "1.0.0"
 description = "Controle de medicamentos para idosos via CLI"
 readme = "README.md"
 license = { text = "MIT" }
-authors = [{ name = "Seu Nome", email = "seu@email.com" }]
+authors = [{ name = "João Gabriel dos Santos Felipe", email = "gabes.santtoss@gmail.com" }]
 requires-python = ">=3.10"
 dependencies = []
 
