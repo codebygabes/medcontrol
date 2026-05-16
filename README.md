@@ -5,7 +5,9 @@
 ![CI](https://github.com/codebygabes/medcontrol/actions/workflows/ci.yml/badge.svg)
 ![Versão](https://img.shields.io/badge/versão-1.0.0-blue)
 ![Python](https://img.shields.io/badge/python-3.10+-green)
+[![Deploy](https://img.shields.io/badge/deploy-Replit-orange)](https://replit.com/@gabessanttoss/medcontrol)
 
+🚀 **Aplicação publicada:** https://replit.com/@gabessanttoss/medcontrol
 ---
 
 ## 🎯 Problema Real
@@ -140,6 +142,7 @@ Segue o padrão [Semantic Versioning](https://semver.org/lang/pt-BR/):
 **João Gabriel dos Santos Felipe**  
 Disciplina: Bootcamp  
 Repositório: https://github.com/codebygabes/medcontrol
+Deploy: https://replit.com/@gabessanttoss/medcontrol
 
 ## 📄 Licença
 
