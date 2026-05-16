@@ -4,7 +4,10 @@ import json
 import os
 from datetime import datetime
 
+import requests
+
 DATA_FILE = os.path.join(os.path.dirname(__file__), "..", "data", "medicamentos.json")
+OPENFDA_URL = "https://api.fda.gov/drug/label.json"
 
 
 def carregar_dados() -> list:
@@ -60,6 +63,42 @@ def remover_medicamento(med_id: int) -> bool:
     return True
 
 
+def consultar_api(nome: str) -> dict:
+    """Consulta informações de um medicamento na API pública OpenFDA.
+
+    Retorna um dicionário com as informações encontradas ou mensagem de erro.
+    """
+    try:
+        response = requests.get(
+            OPENFDA_URL,
+            params={"search": f"openfda.brand_name:{nome}", "limit": 1},
+            timeout=5,
+        )
+        if response.status_code != 200:
+            return {"erro": f"API retornou status {response.status_code}."}
+
+        data = response.json()
+        resultados = data.get("results", [])
+        if not resultados:
+            return {"erro": f"Nenhuma informação encontrada para '{nome}' na OpenFDA."}
+
+        resultado = resultados[0]
+        openfda = resultado.get("openfda", {})
+
+        return {
+            "nome_generico": openfda.get("generic_name", ["N/A"])[0],
+            "fabricante": openfda.get("manufacturer_name", ["N/A"])[0],
+            "uso": resultado.get("indications_and_usage", ["N/A"])[0][:300] + "...",
+            "advertencias": resultado.get("warnings", ["N/A"])[0][:300] + "...",
+        }
+    except requests.exceptions.Timeout:
+        return {"erro": "Tempo de conexão esgotado. Verifique sua internet."}
+    except requests.exceptions.ConnectionError:
+        return {"erro": "Sem conexão com a internet."}
+    except Exception as e:
+        return {"erro": f"Erro inesperado: {e}"}
+
+
 def buscar_medicamento(nome: str) -> list:
     """Busca medicamentos pelo nome (case-insensitive)."""
     medicamentos = carregar_dados()
@@ -69,13 +108,14 @@ def buscar_medicamento(nome: str) -> list:
 def menu():
     """Exibe o menu principal da aplicação."""
     print("\n╔══════════════════════════════════╗")
-    print("║   💊 MedControl v1.0.0           ║")
+    print("║   💊 MedControl v1.1.0           ║")
     print("║   Controle de Medicamentos        ║")
     print("╚══════════════════════════════════╝")
     print("1. Adicionar medicamento")
     print("2. Listar medicamentos")
     print("3. Buscar medicamento")
     print("4. Remover medicamento")
+    print("5. Consultar informações na OpenFDA")
     print("0. Sair")
     print("─" * 36)
 
@@ -125,6 +165,20 @@ def run():
                     print(f"\n❌ Medicamento ID {med_id} não encontrado.")
             except ValueError:
                 print("\n❌ ID inválido. Digite um número.")
+
+        elif opcao == "5":
+            nome = input("Digite o nome do medicamento para consultar na OpenFDA: ")
+            print("\n🌐 Consultando API OpenFDA...")
+            info = consultar_api(nome)
+            if "erro" in info:
+                print(f"\n❌ {info['erro']}")
+            else:
+                print("\n📋 Informações encontradas:")
+                print("─" * 50)
+                print(f"  Nome genérico : {info['nome_generico']}")
+                print(f"  Fabricante    : {info['fabricante']}")
+                print(f"  Indicações    : {info['uso']}")
+                print(f"  Advertências  : {info['advertencias']}")
 
         elif opcao == "0":
             print("\n👋 Até logo!")

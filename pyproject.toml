@@ -4,13 +4,13 @@ build-backend = "setuptools.backends.legacy:build"
 
 [project]
 name = "medcontrol"
-version = "1.0.0"
+version = "1.1.0"
 description = "Controle de medicamentos para idosos via CLI"
 readme = "README.md"
 license = { text = "MIT" }
 authors = [{ name = "João Gabriel dos Santos Felipe", email = "gabes.santtoss@gmail.com" }]
 requires-python = ">=3.10"
-dependencies = []
+dependencies = ["requests>=2.31"]
 
 [project.scripts]
 medcontrol = "medcontrol.app:run"
