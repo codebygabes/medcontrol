@@ -139,9 +139,12 @@ Segue o padrão [Semantic Versioning](https://semver.org/lang/pt-BR/):
 
 ## 👤 Autor
 
-**João Gabriel dos Santos Felipe**  
-Disciplina: Bootcamp  
+**João Gabriel dos Santos Felipe**
+
+Disciplina: Bootcamp II
+
 Repositório: https://github.com/codebygabes/medcontrol
+
 Deploy: https://replit.com/@gabessanttoss/medcontrol
 
 ## 📄 Licença
