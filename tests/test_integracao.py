@@ -1,7 +1,8 @@
 """Teste de integração com a API pública OpenFDA."""
 
-from unittest.mock import patch, Mock
-import pytest
+import requests as req_lib
+from unittest.mock import Mock, patch
+
 from medcontrol.app import consultar_api
 
 
@@ -12,10 +13,6 @@ def _mock_resposta(json_data, status_code=200):
     mock.json.return_value = json_data
     return mock
 
-
-# ────────────────────────────────────────────────────────
-# Testes de integração (com mock da API)
-# ────────────────────────────────────────────────────────
 
 def test_consultar_api_retorna_dados_validos():
     """Integração: API retorna dados e função os processa corretamente."""
@@ -58,7 +55,6 @@ def test_consultar_api_status_erro():
 
 def test_consultar_api_timeout():
     """Integração: timeout de conexão é tratado com mensagem amigável."""
-    import requests as req_lib
     with patch("medcontrol.app.requests.get", side_effect=req_lib.exceptions.Timeout):
         resultado = consultar_api("Losartan")
 
@@ -68,7 +64,6 @@ def test_consultar_api_timeout():
 
 def test_consultar_api_sem_conexao():
     """Integração: erro de conexão é tratado com mensagem amigável."""
-    import requests as req_lib
     with patch("medcontrol.app.requests.get", side_effect=req_lib.exceptions.ConnectionError):
         resultado = consultar_api("Losartan")
 
