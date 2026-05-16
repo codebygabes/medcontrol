@@ -19,7 +19,7 @@ jobs:
           python-version: "3.11"
 
       - name: Instalar dependências de desenvolvimento
-        run: pip install pytest ruff
+        run: pip install pytest ruff requests
 
       - name: Lint com Ruff
         run: ruff check --fix medcontrol/ tests/ || ruff check medcontrol/ tests/
