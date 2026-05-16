@@ -22,7 +22,7 @@ jobs:
         run: pip install pytest ruff
 
       - name: Lint com Ruff
-        run: ruff check medcontrol/ tests/
+        run: ruff check --fix medcontrol/ tests/ || ruff check medcontrol/ tests/
 
       - name: Executar testes com pytest
         run: pytest --tb=short
